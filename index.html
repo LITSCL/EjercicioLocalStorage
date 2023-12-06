@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Añade la Pelicula</h1>
+    <form action="" id="formularioAgregar">
+      <input type="text" id="agregarPelicula">
+      <button type="submit">Guardar</button>
+    </form>
+    <h1>Peliculas</h1>
+    <div id="peliculas">
+      <ul id="listaPeliculas">
+
+      </ul>
+    </div>
+
+    <h1>Borra la Pelicula</h1>
+    <form action="" id="formularioBorrar">
+      <input type="text" id="borrarPelicula">
+      <button type="submit">Borrar</button>
+    </form>
+    <h1>Peliculas</h1>
+
+    <script>
+      var formularioAgregar = document.querySelector("#formularioAgregar");
+      formularioAgregar.addEventListener("submit", function() {
+        var pelicula = document.querySelector("#agregarPelicula").value;
+        if (pelicula.length > 0) {
+          localStorage.setItem(pelicula, pelicula);
+        }
+      });
+
+      var formularioBorrar = document.querySelector("#formularioBorrar");
+      formularioBorrar.addEventListener("submit", function() {
+        var pelicula = document.querySelector("#borrarPelicula").value;
+        if (pelicula.length > 0) {
+          localStorage.removeItem(pelicula);
+        }
+      });
+
+      var ul = document.querySelector("#listaPeliculas");
+      for (var i in localStorage) {
+        if (typeof(localStorage[i]) == "string") {
+          var li = document.createElement("li");
+          li.append(i);
+          ul.append(li);
+        }
+      }
+    </script>
+  </body>
+</html>
